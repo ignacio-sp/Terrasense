@@ -13,6 +13,27 @@
   </head>
 
   <body>
+    <header id="header" class="header fixed-top">
+      <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+  
+        <a href="/" class="logo d-flex align-items-center">
+          <%=image_tag('logo.png') %>
+          <span>Terrasense</span>
+        </a>
+  
+        <nav id="navbar" class="navbar">
+          <ul>
+            <li><a class="nav-link scrollto" href="/crops">Mis Cultivos</a></li>
+            <li><a class="nav-link scrollto" href="#services">Acerca de Nosotros</a></li>
+            <li><a class="nav-link scrollto" href="#portfolio">Términos de Uso</a></li>
+            <li><a class="nav-link scrollto" href="#contact">Contacto</a></li>
+            <li><a class="getstarted scrollto" href="#about">¡Unete!</a></li>
+          </ul>
+          <i class="bi bi-list mobile-nav-toggle"></i>
+        </nav><!-- .navbar -->
+  
+      </div>
+    </header><!-- End Header -->
     <%= yield %>
   </body>
 </html>
