@@ -1,3 +1,4 @@
+<%= javascript_include_tag('heatmap.js') %>
 <div class="container-show-crops">
     <ul class="left-ul">
         <li><a class="left-active">Cultivo 1</a></li>
@@ -8,5 +9,26 @@
     
 <div class="heat-map">
     <h2>Cultivo 1</h2>
+    <div id="heatmapContainer" style="width: 600px; height: 400px;"></div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var heatmapContainer = document.getElementById('heatmapContainer');
+        var heatmap = h337.create({
+        container: heatmapContainer,
+        // Configura opciones adicionales según sea necesario
+        });
 
+        // Ejemplo de datos para el mapa de calor
+        var dataPoints = [
+        { x: 10, y: 15, value: 5 },
+        { x: 50, y: 50, value: 2 },
+        // más datos aquí...
+        ];
+
+        heatmap.setData({
+        max: 10,
+        data: dataPoints
+        });
+    });
+    </script>
 </div>
