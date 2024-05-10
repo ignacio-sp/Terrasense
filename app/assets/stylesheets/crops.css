@@ -37,7 +37,7 @@
     color: #000;
     padding: 8px 16px;
     text-decoration: none;
-    background-color: #010e54;
+    background-color: #6873d1;
     color: rgb(254, 245, 245);
     
 }
@@ -53,10 +53,12 @@ a {
 .left-active:hover {
     background-color: white;
     color: black;
+    transition: 0.3s;
 }
   
 .left-a:hover:not(.active) {
     background-color: #555;
     color: white;
+    transition: 0.3s;
 }
 
