@@ -1,6 +1,7 @@
 .container-show-crops{
-    padding-top: 20vh;
-    padding-left: 5vw;
+    /* padding-top: 20vh;
+    padding-left: 5vw; */
+    margin-top: 6.5vw;
     border-radius: 5px;
     display: flex;
     flex-direction: row;

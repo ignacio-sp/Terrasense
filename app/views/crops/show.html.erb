@@ -9,8 +9,8 @@
 
     
 <div class="heat-map">
-    <h2>Cultivo 1</h2>
-    <div id="heatmapContainer" style="width: 60vw; height: 50vh; border: 3px solid #000; border-radius: 5px;"></div>
+    <h2 id="crop-title" style="color:#012970">Cultivo 1</h2>
+    <div id="heatmapContainer" style="width: 60vw; height: 50vh; border: 3.5px solid #012970; border-radius: 5px;"></div>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var heatmapContainer = document.getElementById('heatmapContainer');
@@ -25,6 +25,9 @@
             fetch(`/crops/${cropId}/heatmap_data.json`)
                 .then(response => response.json())
                 .then(data => {
+                title = document.getElementById('crop-title');
+                console.log(title.innerHTML);
+                title.innerHTML = `Cultivo ${cropId}`
                 heatmap.setData({
                     max: 100, // maximo valor posible
                     data: data
