@@ -5,4 +5,7 @@ Rails.application.routes.draw do
   root "landing#index"
 
   get "/crops", to: "crops#show"
+
+  get "/crops/:crop_id/heatmap_data", to: "crops#heatmap_data", as: :crop_heatmap_data
+  
 end
