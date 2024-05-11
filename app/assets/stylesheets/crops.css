@@ -42,6 +42,7 @@
     
 }
 
+
 a {
     color:red;
 }
@@ -50,13 +51,17 @@ a {
     color: red;
 }
 
+  
+
+
 .left-active:hover {
     background-color: white;
     color: black;
+    transition: 0.3s;
 }
   
 .left-a:hover:not(.active) {
     background-color: #555;
     color: white;
+    transition: 0.3s;
 }
-
