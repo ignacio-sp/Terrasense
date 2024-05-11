@@ -11,6 +11,105 @@
 <div class="heat-map">
     <h2 id="crop-title" style="color:#012970">Cultivo 1</h2>
     <div id="heatmapContainer" style="width: 60vw; height: 50vh; border: 3.5px solid #012970; border-radius: 5px;"></div>
+    <div class="sensores">
+        <div class="sensor" id="1">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 1</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="2">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 2</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="3">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 3</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="4">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 4</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="5">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 5</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="6">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 6</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="7">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 7</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="8">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 8</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="9">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 9</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="10">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 10</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="11">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 11</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+        <div class="sensor" id="12">
+            <img class="imagen" src="/assets/sensor.jpg" />
+            <div class="texto-sensor">
+                <p>Nombre: Sensor 12</p>
+                <p>Nitrógeno: 0</p>
+                <p>Humedad: 0</p>
+            </div>
+        </div>
+    </div>
+
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         var heatmapContainer = document.getElementById('heatmapContainer');
@@ -24,14 +123,156 @@
         function updateHeatmap(cropId) {
             fetch(`/crops/${cropId}/heatmap_data.json`)
                 .then(response => response.json())
-                .then(data => {
+                .then(data => {  
+
+                // Heatmap
                 title = document.getElementById('crop-title');
                 console.log(title.innerHTML);
                 title.innerHTML = `Cultivo ${cropId}`
                 heatmap.setData({
                     max: 100, // maximo valor posible
-                    data: data
+                    data: data.datapoints
                 });
+
+                // Sensores
+
+                console.log(data);
+                var parrafos;
+                const sensor_1 = document.getElementById('1');
+                parrafos = sensor_1.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: " + data.sensor[0]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: " + data.sensor[0]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: " + data.sensor[0]["humedad"] + "%."
+                    }
+                });
+
+                const sensor_2 = document.getElementById('2');
+                parrafos = sensor_2.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: " + data.sensor[1]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: " + data.sensor[1]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: " + data.sensor[1]["humedad"] + "%."
+                    }
+                });
+
+                const sensor_3 = document.getElementById('3');
+                parrafos = sensor_3.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: " + data.sensor[2]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: " + data.sensor[2]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: " + data.sensor[2]["humedad"] + "%."
+                    }
+                });
+                const sensor_4 = document.getElementById('4');
+                parrafos = sensor_4.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre:  " + data.sensor[3]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: " + data.sensor[3]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: " + data.sensor[3]["humedad"] + "%."
+                    }
+                });
+                const sensor_5 = document.getElementById('5');
+                parrafos = sensor_5.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: " + data.sensor[4]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: " + data.sensor[4]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: " + data.sensor[4]["humedad"] + "%."
+                    }
+                });
+                const sensor_6 = document.getElementById('6');
+                parrafos = sensor_6.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: " + data.sensor[5]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: " + data.sensor[5]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: : " + data.sensor[5]["humedad"] + "%."
+                    }
+                });
+                const sensor_7 = document.getElementById('7');
+                parrafos = sensor_7.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: : " + data.sensor[6]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: : " + data.sensor[6]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: : " + data.sensor[6]["humedad"] + "%."
+                    }
+                });
+                const sensor_8 = document.getElementById('8');
+                parrafos = sensor_8.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: : " + data.sensor[7]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: : " + data.sensor[7]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: : " + data.sensor[7]["humedad"] + "%."
+                    }
+                });
+                const sensor_9 = document.getElementById('9');
+                parrafos = sensor_9.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: : " + data.sensor[8]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: : " + data.sensor[8]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: : " + data.sensor[8]["humedad"] + "%."
+                    }
+                });
+                const sensor_10 = document.getElementById('10');
+                parrafos = sensor_10.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: : " + data.sensor[9]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: : " + data.sensor[9]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: : " + data.sensor[9]["humedad"] + "%."
+                    }
+                });
+                const sensor_11 = document.getElementById('11');
+                parrafos = sensor_11.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: : " + data.sensor[10]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: : " + data.sensor[10]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: : " + data.sensor[10]["humedad"] + "%."
+                    }
+                });
+                const sensor_12 = document.getElementById('12');
+                parrafos = sensor_12.querySelectorAll(".texto-sensor p");
+                parrafos.forEach( (parrafo) => {
+                    if (parrafo.textContent.startsWith("Nombre")) {
+                        parrafo.textContent = "Nombre: " + data.sensor[11]["name"] + ".";    
+                    } else if (parrafo.textContent.startsWith("Nitrógeno")) {
+                        parrafo.textContent = "Nitrógeno: " + data.sensor[11]["nitrogeno"] + " ppm."
+                    } else {
+                        parrafo.textContent = "Humedad: " + data.sensor[11]["humedad"] + "%."
+                    }
+                });
+
                 })
                 .catch(error => console.error('Error fetching data: ', error));
             }

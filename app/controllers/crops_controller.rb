@@ -5,13 +5,28 @@ class CropsController < ApplicationController
     end
 
     def show
-        
+
     end
 
     def heatmap_data
         cultivo = params[:crop_id].to_i
         @dataPoints = []
+        @sensor = []
         if cultivo == 1
+            @sensor = [
+                {name: "Sensor 0", x: 0, y: 0, nitrogeno: 8, humedad: 38},
+                {name: "Sensor 1", x: 10, y: 0, nitrogeno: 12, humedad: 42},
+                {name: "Sensor 2", x: 20, y: 0, nitrogeno: 9, humedad: 35},
+                {name: "Sensor 3", x: 30, y: 0, nitrogeno: 84, humedad: 56},
+                {name: "Sensor 4", x: 40, y: 0, nitrogeno: 34, humedad: 10},
+                {name: "Sensor 5", x: 50, y: 0, nitrogeno: 47, humedad: 34},
+                {name: "Sensor 6", x: 0, y: 10, nitrogeno: 62, humedad: 67},
+                {name: "Sensor 7", x: 10, y: 10, nitrogeno: 8, humedad: 45},
+                {name: "Sensor 8", x: 20, y: 10, nitrogeno: 19, humedad: 31},
+                {name: "Sensor 9", x: 30, y: 10, nitrogeno: 75, humedad: 32},
+                {name: "Sensor 10", x: 40, y: 10, nitrogeno: 62, humedad: 20},
+                {name: "Sensor 11", x: 50, y: 10, nitrogeno: 25, humedad: 45},
+            ]
             @dataPoints = [{x: 1038, y: 173, value: 14},
             {x: 151, y: 188, value: 41},
             {x: 19, y: 42, value: 94},
@@ -113,6 +128,20 @@ class CropsController < ApplicationController
             {x: 850, y: 310, value: 25},
             {x: 930, y: 281, value: 60}]
         elsif cultivo == 2
+            @sensor = [
+                {name: "Sensor 0", x: 0, y: 0, nitrogeno: 14, humedad: 93},
+                {name: "Sensor 1", x: 10, y: 0, nitrogeno: 2, humedad: 54},
+                {name: "Sensor 2", x: 20, y: 0, nitrogeno: 23, humedad: 12},
+                {name: "Sensor 3", x: 30, y: 0, nitrogeno: 24, humedad: 24},
+                {name: "Sensor 4", x: 40, y: 0, nitrogeno: 19, humedad: 63},
+                {name: "Sensor 5", x: 50, y: 0, nitrogeno: 11, humedad: 50},
+                {name: "Sensor 6", x: 0, y: 10, nitrogeno: 23, humedad: 87},
+                {name: "Sensor 7", x: 10, y: 10, nitrogeno: 19, humedad: 23},
+                {name: "Sensor 8", x: 20, y: 10, nitrogeno: 54, humedad: 89},
+                {name: "Sensor 9", x: 30, y: 10, nitrogeno: 39, humedad: 73},
+                {name: "Sensor 10", x: 40, y: 10, nitrogeno: 14, humedad: 31},
+                {name: "Sensor 11", x: 50, y: 10, nitrogeno: 16, humedad: 45},
+            ]
             @dataPoints = [
                 {x: 96, y: 254, value: 86},
                 {x: 1092, y: 288, value: 44},
@@ -215,6 +244,20 @@ class CropsController < ApplicationController
                 {x: 945, y: 14, value: 25},
                 {x: 409, y: 350, value: 12}]
         else
+            @sensor = [
+                {name: "Sensor 0", x: 0, y: 0, nitrogeno: 10, humedad: 23},
+                {name: "Sensor 1", x: 10, y: 0, nitrogeno: 21, humedad: 34},
+                {name: "Sensor 2", x: 20, y: 0, nitrogeno: 2, humedad: 13},
+                {name: "Sensor 3", x: 30, y: 0, nitrogeno: 78, humedad: 65},
+                {name: "Sensor 4", x: 40, y: 0, nitrogeno: 23, humedad: 9},
+                {name: "Sensor 5", x: 50, y: 0, nitrogeno: 43, humedad: 13},
+                {name: "Sensor 6", x: 0, y: 10, nitrogeno: 76, humedad: 76},
+                {name: "Sensor 7", x: 10, y: 10, nitrogeno: 80, humedad: 54},
+                {name: "Sensor 8", x: 20, y: 10, nitrogeno: 22, humedad: 32},
+                {name: "Sensor 9", x: 30, y: 10, nitrogeno: 17, humedad: 16},
+                {name: "Sensor 10", x: 40, y: 10, nitrogeno: 56, humedad: 90},
+                {name: "Sensor 11", x: 50, y: 10, nitrogeno: 32, humedad: 45},
+            ]
             @dataPoints = [
                 {x: 452, y: 356, value: 8},
                 {x: 254, y: 394, value: 44},
@@ -318,8 +361,13 @@ class CropsController < ApplicationController
                 {x: 107, y: 22, value: 13}]
         end
 
+        data = {
+            datapoints: @dataPoints, 
+            sensor: @sensor
+        }
+
         respond_to do |format|
-            format.json { render json:@dataPoints}
+            format.json { render json: data}
         end
     end
 end
