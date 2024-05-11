@@ -1,6 +1,7 @@
 .container-show-crops{
-    padding-top: 20vh;
-    padding-left: 5vw;
+    /* padding-top: 20vh;
+    padding-left: 5vw; */
+    margin-top: 6.5vw;
     border-radius: 5px;
     display: flex;
     flex-direction: row;
@@ -42,6 +43,7 @@
     
 }
 
+
 a {
     color:red;
 }
@@ -50,13 +52,17 @@ a {
     color: red;
 }
 
+  
+
+
 .left-active:hover {
     background-color: white;
     color: black;
+    transition: 0.3s;
 }
   
 .left-a:hover:not(.active) {
     background-color: #555;
     color: white;
+    transition: 0.3s;
 }
-
